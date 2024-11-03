@@ -66,14 +66,14 @@ int allShipsSunk(char grid[GRID_SIZE][GRID_SIZE]) {
 }
 
 int main() {
-    srand(time(NULL));
+    
 
     int pipefd1[2], pipefd2[2];  // Two pipes for two-way communication
     pipe(pipefd1);  // Parent writes to pipefd1[1], child reads from pipefd1[0]
     pipe(pipefd2);  // Child writes to pipefd2[1], parent reads from pipefd2[0]
 
     pid_t pid = fork();
-
+    srand(time(NULL) + getpid());
     char parentGrid[GRID_SIZE][GRID_SIZE];
     char childGrid[GRID_SIZE][GRID_SIZE];
 
